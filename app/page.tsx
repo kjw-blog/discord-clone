@@ -1,5 +1,3 @@
-import Image from 'next/image';
-
 export default function Home() {
-  return <p>Hello Discord Clone</p>;
+  return <p>Hello Discord Clone Test</p>;
 }
