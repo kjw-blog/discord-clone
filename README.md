@@ -1,4 +1,3 @@
-
 ![header](https://capsule-render.vercel.app/api?type=waving&color=7F899C&fontColor=ffffff&height=200&section=header&text=디스코드%20클론코딩&fontSize=30&animation=fadeIn)
 
 <div align="center">
@@ -8,6 +7,7 @@
   <img src="https://img.shields.io/badge/VSCode-007ACC?style=flat&logo=visualstudiocode&logoColor=white">
   <img src="https://img.shields.io/badge/Next.js-000000?style=flat&logo=next.js&logoColor=white">
   <img src="https://img.shields.io/badge/Prisma-2D3748?style=flat&logo=prisma&logoColor=white">
+  <img src="https://img.shields.io/badge/Zustand-CD792C?style=flat&logo=zustand&logoColor=white">
   <br/>
   <img src="https://img.shields.io/badge/TypeScript-3178C6?style=flat&logo=typescript&logoColor=white">
   <img src="https://img.shields.io/badge/Axios-5A29E4?style=flat&logo=axios&logoColor=white">
@@ -25,10 +25,8 @@
   <h3>Link</h3>
 </div>
 
-[인증 관리](https://clerk.com/)  
+[인증 관리](https://clerk.com/)
 
+[파일 업로드](https://uploadthing.com/)
 
-[파일 업로드](https://uploadthing.com/)  
-
-
-[컴포넌트 UI](https://uploadthing.com/)  
+[컴포넌트 UI](https://uploadthing.com/)
