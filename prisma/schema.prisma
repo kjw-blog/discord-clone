@@ -18,9 +18,9 @@ model Profile {
   imageUrl String @db.Text
   email    String @db.Text
 
-  servers Server[]
-  members Member[]
-  channel Channel[]
+  servers  Server[]
+  members  Member[]
+  channels Channel[]
 
   createdAt DateTime @default(now())
   updatedAt DateTime @updatedAt
@@ -35,8 +35,8 @@ model Server {
   profileId String
   profile   Profile @relation(fields: [profileId], references: [id], onDelete: Cascade)
 
-  members Member[]
-  channel Channel[]
+  members  Member[]
+  channels Channel[]
 
   createdAt DateTime @default(now())
   updatedAt DateTime @updatedAt
