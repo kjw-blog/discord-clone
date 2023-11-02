@@ -70,7 +70,8 @@ const InviteModal = () => {
                         <Input
                             disabled={isLoading}
                             className="border-0 bg-zinc-300/50 text-black focus-visible:ring-0 focus-visible:ring-offset-0"
-                            defaultValue={inviteUrl}
+                            value={inviteUrl}
+                            readOnly
                         />
                         <Button
                             disabled={isLoading}
