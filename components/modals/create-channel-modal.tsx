@@ -50,7 +50,7 @@ const formSchema = z.object({
 const typeTranslation = {
     TEXT: '텍스트',
     VIDEO: '비디오',
-    AUDIO: '보이스',
+    AUDIO: '음성',
 };
 
 const CreateChannelModal = () => {

@@ -51,7 +51,7 @@ const DeleteServerModal = () => {
                     <DialogDescription className="text-center text-zinc-500">
                         정말 서버를 삭제하시겠습니까?
                         <br />
-                        <span className="font-semibold text-indigo-500">
+                        <span className="text-indigo-5 00 font-semibold">
                             {server?.name}
                         </span>{' '}
                         서버는 영구적으로 삭제됩니다.
