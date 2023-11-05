@@ -92,6 +92,7 @@ export const ServerSearch = ({ data }: SearchSearchProps) => {
                                 return (
                                     <CommandItem
                                         key={id}
+                                        value={name}
                                         onSelect={() => onClick({ id, type })}
                                     >
                                         {icon}
