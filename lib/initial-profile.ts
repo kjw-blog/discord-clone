@@ -20,6 +20,7 @@ export const initialProfile = async () => {
     }
 
     let name = '';
+    const email = user.emailAddresses[0].emailAddress;
 
     if (user.firstName && user.lastName) {
         name = `${user.firstName} ${user.lastName}`;
@@ -27,6 +28,8 @@ export const initialProfile = async () => {
         name = user.firstName;
     } else if (user.lastName) {
         name = user.lastName;
+    } else {
+        name = email.split('@')[0];
     }
 
     const newProfile = await db.profile.create({
@@ -34,7 +37,7 @@ export const initialProfile = async () => {
             userId: user.id,
             name,
             imageUrl: user.imageUrl,
-            email: user.emailAddresses[0].emailAddress,
+            email,
         },
     });
 
