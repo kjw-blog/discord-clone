@@ -33,7 +33,7 @@ export async function PATCH(
             data: {
                 members: {
                     deleteMany: {
-                        serverId: profile.id,
+                        profileId: profile.id,
                     },
                 },
             },
