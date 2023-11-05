@@ -1,57 +1,49 @@
-import { ChannelType, MemberRole } from '@prisma/client';
 import { NextResponse } from 'next/server';
 
 import { currentProfile } from '@/lib/current-profile';
 import { db } from '@/lib/db';
 
-export async function POST(req: Request) {
+export async function PATCH(
+    req: Request,
+    { params }: { params: { serverId: string } },
+) {
     try {
         const profile = await currentProfile();
-        const { name, type } = await req.json();
-        const { searchParams } = new URL(req.url);
-
-        const serverId = searchParams.get('serverId');
 
         if (!profile) {
             return new NextResponse('Unauthorized', { status: 401 });
         }
 
-        if (!serverId) {
+        if (!params.serverId) {
             return new NextResponse('Server Id missing', { status: 400 });
-        }
-
-        if (name === 'general') {
-            return new NextResponse("Name cannot be 'general'", {
-                status: 400,
-            });
         }
 
         const server = await db.server.update({
             where: {
-                id: serverId,
+                id: params.serverId,
+                profileId: {
+                    not: profile.id,
+                },
                 members: {
                     some: {
                         profileId: profile.id,
-                        role: {
-                            in: [MemberRole.ADMIN, MemberRole.MODERATOR],
-                        },
                     },
                 },
             },
             data: {
-                channels: {
-                    create: {
-                        profileId: profile.id,
-                        name,
-                        type,
+                members: {
+                    deleteMany: {
+                        serverId: profile.id,
                     },
                 },
             },
         });
 
+        console.log(server);
+
         return NextResponse.json(server);
     } catch (error) {
-        console.log('CHANNELS_POST', error);
+        console.log('SERVER_ID_LEAVE', error);
         return new NextResponse('Internal Error', { status: 500 });
     }
 }
