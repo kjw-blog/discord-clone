@@ -10,6 +10,7 @@ import { Separator } from '@/components/ui/separator';
 import { ServerSearch } from './server-search';
 import { ServerSection } from './server-section';
 import { ServerChannel } from './server-channel';
+import { ServerMember } from './server-member';
 
 interface ServerSidebarProps {
     serverId: string;
@@ -134,14 +135,16 @@ export const ServerSidebar = async ({ serverId }: ServerSidebarProps) => {
                             role={role}
                             label="텍스트 채널"
                         />
-                        {textChannels.map((channel) => (
-                            <ServerChannel
-                                key={channel.id}
-                                channel={channel}
-                                role={role}
-                                server={server}
-                            />
-                        ))}
+                        <div className="space-y-[2px]">
+                            {textChannels.map((channel) => (
+                                <ServerChannel
+                                    key={channel.id}
+                                    channel={channel}
+                                    role={role}
+                                    server={server}
+                                />
+                            ))}
+                        </div>
                     </div>
                 )}
                 {!!audioChannels?.length && (
@@ -152,14 +155,16 @@ export const ServerSidebar = async ({ serverId }: ServerSidebarProps) => {
                             role={role}
                             label="음성 채널"
                         />
-                        {audioChannels.map((channel) => (
-                            <ServerChannel
-                                key={channel.id}
-                                channel={channel}
-                                role={role}
-                                server={server}
-                            />
-                        ))}
+                        <div className="space-y-[2px]">
+                            {audioChannels.map((channel) => (
+                                <ServerChannel
+                                    key={channel.id}
+                                    channel={channel}
+                                    role={role}
+                                    server={server}
+                                />
+                            ))}
+                        </div>
                     </div>
                 )}
                 {!!videoChannels?.length && (
@@ -170,14 +175,35 @@ export const ServerSidebar = async ({ serverId }: ServerSidebarProps) => {
                             role={role}
                             label="비디오 채널"
                         />
-                        {videoChannels.map((channel) => (
-                            <ServerChannel
-                                key={channel.id}
-                                channel={channel}
-                                role={role}
-                                server={server}
-                            />
-                        ))}
+                        <div className="space-y-[2px]">
+                            {videoChannels.map((channel) => (
+                                <ServerChannel
+                                    key={channel.id}
+                                    channel={channel}
+                                    role={role}
+                                    server={server}
+                                />
+                            ))}
+                        </div>
+                    </div>
+                )}
+                {!!members?.length && (
+                    <div className="mb-2">
+                        <ServerSection
+                            sectionType="members"
+                            role={role}
+                            label="멤버"
+                            server={server}
+                        />
+                        <div className="space-y-[2px]">
+                            {members.map((member) => (
+                                <ServerMember
+                                    key={member.id}
+                                    member={member}
+                                    server={server}
+                                />
+                            ))}
+                        </div>
                     </div>
                 )}
             </ScrollArea>
