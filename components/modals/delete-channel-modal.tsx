@@ -3,7 +3,7 @@
 import qs from 'query-string';
 import axios from 'axios';
 import { useState } from 'react';
-import { useParams, useRouter } from 'next/navigation';
+import { useRouter } from 'next/navigation';
 
 import {
     Dialog,
@@ -19,10 +19,9 @@ import { useModal } from '@/hooks/use-modal-store';
 const DeleteChannelModal = () => {
     const { isOpen, onClose, type, data } = useModal();
     const router = useRouter();
-    const params = useParams();
 
     const isModalOpen = isOpen && type === 'deleteChannel';
-    const { channel } = data;
+    const { server, channel } = data;
 
     const [isLoading, setIsLoading] = useState(false);
 
@@ -32,7 +31,7 @@ const DeleteChannelModal = () => {
             const url = qs.stringifyUrl({
                 url: `/api/channels/${channel?.id}`,
                 query: {
-                    serverId: params?.serverId,
+                    serverId: server?.id,
                 },
             });
 
@@ -40,7 +39,7 @@ const DeleteChannelModal = () => {
 
             onClose();
             router.refresh();
-            router.push(`/servers/${params?.serverId}`);
+            router.push(`/servers/${server?.id}`);
         } catch (error) {
             console.log(error);
         } finally {

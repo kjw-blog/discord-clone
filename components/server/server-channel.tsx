@@ -57,7 +57,9 @@ export const ServerChannel = ({
                     </ActionTooltip>
                     <ActionTooltip label="삭제하기">
                         <Trash
-                            onClick={() => onOpen('deleteChannel', { channel })}
+                            onClick={() =>
+                                onOpen('deleteChannel', { server, channel })
+                            }
                             className="hidden h-4 w-4 text-zinc-500 transition hover:text-zinc-600 group-hover:block dark:text-zinc-400 dark:hover:text-zinc-300"
                         />
                     </ActionTooltip>
