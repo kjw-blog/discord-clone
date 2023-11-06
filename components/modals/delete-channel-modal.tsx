@@ -1,8 +1,9 @@
 'use client';
 
+import qs from 'query-string';
 import axios from 'axios';
 import { useState } from 'react';
-import { useRouter } from 'next/navigation';
+import { useParams, useRouter } from 'next/navigation';
 
 import {
     Dialog,
@@ -13,27 +14,33 @@ import {
     DialogTitle,
 } from '@/components/ui/dialog';
 import { Button } from '@/components/ui/button';
-
 import { useModal } from '@/hooks/use-modal-store';
 
-const DeleteServerModal = () => {
+const DeleteChannelModal = () => {
     const { isOpen, onClose, type, data } = useModal();
     const router = useRouter();
+    const params = useParams();
 
-    const isModalOpen = isOpen && type === 'deleteServer';
-    const { server } = data;
+    const isModalOpen = isOpen && type === 'deleteChannel';
+    const { channel } = data;
 
     const [isLoading, setIsLoading] = useState(false);
 
     const onClick = async () => {
         try {
             setIsLoading(true);
+            const url = qs.stringifyUrl({
+                url: `/api/channels/${channel?.id}`,
+                query: {
+                    serverId: params?.serverId,
+                },
+            });
 
-            await axios.delete(`/api/servers/${server?.id}`);
+            await axios.delete(url);
 
             onClose();
             router.refresh();
-            router.push('/');
+            router.push(`/servers/${params?.serverId}`);
         } catch (error) {
             console.log(error);
         } finally {
@@ -46,15 +53,15 @@ const DeleteServerModal = () => {
             <DialogContent className="overflow-hidden bg-white p-0 text-black">
                 <DialogHeader className="px-6 pt-8">
                     <DialogTitle className="text-center text-2xl font-bold">
-                        서버 삭제
+                        채널 삭제
                     </DialogTitle>
                     <DialogDescription className="text-center text-zinc-500">
-                        정말 서버를 삭제하시겠습니까?
+                        정말 채널을 삭제하시겠습니까?
                         <br />
                         <span className="font-semibold text-indigo-500">
-                            {server?.name}
+                            # {channel?.name}
                         </span>{' '}
-                        서버는 영구적으로 삭제됩니다.
+                        채널은 영구적으로 삭제됩니다.
                     </DialogDescription>
                 </DialogHeader>
                 <DialogFooter className="bg-gray-100 px-6 py-4">
@@ -80,4 +87,4 @@ const DeleteServerModal = () => {
     );
 };
 
-export default DeleteServerModal;
+export default DeleteChannelModal;
