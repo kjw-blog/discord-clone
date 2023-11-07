@@ -35,7 +35,7 @@ const findConversation = async (memberOneId: string, memberTwoId: string) => {
             },
         });
     } catch {
-        return;
+        return null;
     }
 };
 
