@@ -127,12 +127,9 @@ model Conversation {
   memberOne   Member @relation("MemberOne", fields: [memberOneId], references: [id], onDelete: Cascade)
 
   memberTwoId String
-  memberTwo   Member? @relation("MemberTwo", fields: [memberTwoId], references: [id], onDelete: Cascade)
+  memberTwo   Member @relation("MemberTwo", fields: [memberTwoId], references: [id], onDelete: Cascade)
 
   directMessages DirectMessage[]
-
-  createdAt DateTime @default(now())
-  updatedAt DateTime @updatedAt
 
   @@unique([memberOneId, memberTwoId])
   @@index([memberTwoId])

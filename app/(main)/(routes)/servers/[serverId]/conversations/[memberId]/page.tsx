@@ -1,9 +1,9 @@
 import { redirectToSignIn } from '@clerk/nextjs';
-
-import { currentProfile } from '@/lib/current-profile';
-import { db } from '@/lib/db';
 import { redirect } from 'next/navigation';
+
+import { db } from '@/lib/db';
 import { getOrCreateConversation } from '@/lib/conversation';
+import { currentProfile } from '@/lib/current-profile';
 import { ChatHeader } from '@/components/chat/chat-header';
 
 interface MemberIdPageProps {
@@ -51,8 +51,8 @@ const MemberIdPage = async ({ params }: MemberIdPageProps) => {
     return (
         <div className="flex h-full flex-col bg-white dark:bg-[#313338]">
             <ChatHeader
-                imageUrl={otherMember?.profile.imageUrl}
-                name={otherMember?.profile.name!}
+                imageUrl={otherMember.profile.imageUrl}
+                name={otherMember.profile.name}
                 serverId={params.serverId}
                 type="conversation"
             />
