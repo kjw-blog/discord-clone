@@ -39,7 +39,7 @@ export const ChatInput = ({ apiUrl, name, query, type }: ChatInputProps) => {
                 <FormField
                     control={form.control}
                     name="content"
-                    render={(field) => (
+                    render={({ field }) => (
                         <FormItem>
                             <FormControl>
                                 <div className="relative p-4 pb-6">
