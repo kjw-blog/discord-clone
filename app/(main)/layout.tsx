@@ -2,7 +2,7 @@ import { NavigationSidebar } from '@/components/navigation/navigation-sidebar';
 
 const MainLayout = async ({ children }: { children: React.ReactNode }) => {
     return (
-        <div className="h-ull">
+        <div className="h-full">
             <div className="fixed inset-y-0 z-30 hidden h-full w-[72px] flex-col md:flex">
                 <NavigationSidebar />
             </div>
