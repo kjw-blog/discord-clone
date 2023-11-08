@@ -12,7 +12,7 @@ export const SocketIndicator = () => {
                 variant="outline"
                 className="border-none bg-yellow-600 text-white"
             >
-                p
+                Fallback: Polling every 1s
             </Badge>
         );
     }
