@@ -40,6 +40,12 @@ const roleIconMap = {
     ADMIN: <ShieldAlert className="ml-2 h-4 w-4 text-rose-500" />,
 };
 
+const roleKrMap = {
+    GUEST: '',
+    MODERATOR: '매니저',
+    ADMIN: '관리자',
+};
+
 const formSchema = z.object({
     content: z.string().min(1),
 });
@@ -140,7 +146,7 @@ export const ChatItem = ({
                             >
                                 {member.profile.name}
                             </p>
-                            <ActionTooltip label={member.role}>
+                            <ActionTooltip label={roleKrMap[member.role]}>
                                 {roleIconMap[member.role]}
                             </ActionTooltip>
                         </div>

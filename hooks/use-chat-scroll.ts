@@ -1,4 +1,3 @@
-import { Big_Shoulders_Display } from 'next/font/google';
 import { useEffect, useState } from 'react';
 
 type ChatScrollProps = {
