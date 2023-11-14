@@ -18,9 +18,22 @@ export const MediaRoom = ({ audio, chatId, video }: MediaRoomProps) => {
     const [token, setToken] = useState('');
 
     useEffect(() => {
-        if (!user?.firstName && !user?.lastName) return;
+        let name = '';
+        const email = user?.emailAddresses[0].emailAddress;
 
-        const name = `${user.firstName} ${user.lastName}`;
+        if ((!user?.firstName && !user?.lastName) || !email) {
+            return;
+        }
+
+        if (user?.firstName && user?.lastName) {
+            name = `${user?.firstName} ${user?.lastName}`;
+        } else if (user?.firstName) {
+            name = user?.firstName;
+        } else if (user?.lastName) {
+            name = user?.lastName;
+        } else {
+            name = email.split('@')[0];
+        }
 
         (async () => {
             try {
@@ -33,7 +46,7 @@ export const MediaRoom = ({ audio, chatId, video }: MediaRoomProps) => {
                 console.log(e);
             }
         })();
-    }, [user?.firstName, user?.lastName, chatId]);
+    }, [user?.firstName, user?.lastName, chatId, user?.emailAddresses]);
 
     if (token === '') {
         return (
